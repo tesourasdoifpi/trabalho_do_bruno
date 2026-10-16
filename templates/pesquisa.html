@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Pesquisar Operações{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card card-custom">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Pesquisar Operações</h4>
+            </div>
+            <div class="card-body p-4">
+                
+                <!-- Navegação das Abas -->
+                <ul class="nav nav-tabs" id="pesquisaTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="termo-tab" data-bs-toggle="tab" data-bs-target="#termo" type="button" role="tab" aria-controls="termo" aria-selected="true">
+                            Pesquisa por Termo
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="data-tab" data-bs-toggle="tab" data-bs-target="#data-pesquisa" type="button" role="tab" aria-controls="data-pesquisa" aria-selected="false">
+                            Pesquisa por Data
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Conteúdo das Abas -->
+                <div class="tab-content mt-4" id="pesquisaTabsContent">
+                    
+                    <!-- Aba: Pesquisa por Termo -->
+                    <div class="tab-pane fade show active" id="termo" role="tabpanel" aria-labelledby="termo-tab">
+                        <form action="/resultado_pesquisa" method="GET">
+                            <!-- Input oculto para identificar o tipo de pesquisa no backend -->
+                            <input type="hidden" name="tipo_pesquisa" value="termo">
+                            
+                            <div class="mb-3">
+                                <label for="termo_busca" class="form-label">Código do Ativo / ID da Operação</label>
+                                <input type="text" class="form-control" id="termo_busca" name="termo_busca" placeholder="Ex: PETR4, VALE3..." style="text-transform: uppercase;" required>
+                                <div class="form-text">Digite o código do ativo ou ID da operação que deseja buscar.</div>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Aba: Pesquisa por Data (Período) -->
+                    <div class="tab-pane fade" id="data-pesquisa" role="tabpanel" aria-labelledby="data-tab">
+                        <form action="/resultado_pesquisa" method="GET">
+                            <!-- Input oculto para identificar o tipo de pesquisa no backend -->
+                            <input type="hidden" name="tipo_pesquisa" value="data">
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="data_inicio" class="form-label">Data Inicial</label>
+                                    <input type="date" class="form-control" id="data_inicio" name="data_inicio" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="data_fim" class="form-label">Data Final</label>
+                                    <input type="date" class="form-control" id="data_fim" name="data_fim" required>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="form-text">Selecione o período exato (início e fim) em que as operações ocorreram.</div>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">Buscar por Período</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="mt-3 text-center">
+            <a href="{{ url_for('listar_todas_operacoes') }}" class="text-decoration-none">&larr; Voltar para a lista completa</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

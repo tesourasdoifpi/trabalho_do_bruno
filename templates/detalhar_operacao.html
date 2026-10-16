@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes da Operação{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-custom">
+            <div class="card-header d-flex justify-content-between align-items-center bg-info text-white">
+                <h5 class="mb-0">Detalhes da Operação #{{ operacao.id }}</h5>
+                <span class="badge bg-light text-dark fs-6">{{ operacao.ativo }}</span>
+            </div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Data:</span> <strong>{{ operacao.data_formatada }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Tipo de Operação:</span> 
+                        <strong>
+                            {% if operacao.tipo_operacao == 1 %}Compra{% else %}Venda{% endif %}
+                        </strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Quantidade:</span> <strong>{{ operacao.quantidade }} un.</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Valor Unitário:</span> <strong>R$ {{ "%.2f"|format(operacao.valor_unitario) }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between text-muted">
+                        <span>Valor Bruto:</span> <span>R$ {{ "%.2f"|format(operacao.valor_bruto) }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between text-danger">
+                        <span>Taxas (0,03%):</span> <span>- R$ {{ "%.2f"|format(operacao.taxas) }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between fs-5 bg-light mt-2">
+                        <span><strong>Valor Líquido:</strong></span> 
+                        <strong class="text-success">R$ {{ "%.2f"|format(operacao.valor_liquido) }}</strong>
+                    </li>
+                </ul>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('listar_todas_operacoes') }}" class="btn btn-outline-primary">Voltar para Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
