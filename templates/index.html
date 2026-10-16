@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Início - FinanceApp{% endblock %}
+
+{% block content %}
+<!-- Seção Hero / Boas-vindas -->
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm card-custom text-center">
+    <div class="container-fluid py-4">
+        <h1 class="display-5 fw-bold text-primary">Bem-vindo ao FinanceApp</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted mt-3">
+            O seu sistema de gestão de operações financeiras. Controle suas compras e vendas de ativos de forma rápida, segura e organizada.
+        </p>
+    </div>
+</div>
+
+<!-- Cards de Acesso Rápido -->
+<div class="row align-items-md-stretch mt-4">
+    
+    <!-- Card: Nova Operação -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 card-custom border-primary border-top border-4">
+            <div class="card-body text-center p-4">
+                <h3 class="card-title text-primary mb-3">➕ Nova</h3>
+                <p class="card-text text-muted mb-4">
+                    Registre uma nova operação de compra ou venda informando o ativo, quantidade e valor.
+                </p>
+                <a href="{{ url_for('cadastrar_operacao') }}" class="btn btn-outline-primary w-100">Cadastrar Operação</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card: Listar Operações -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 card-custom border-success border-top border-4">
+            <div class="card-body text-center p-4">
+                <h3 class="card-title text-success mb-3">📊 Listar</h3>
+                <p class="card-text text-muted mb-4">
+                    Visualize a tabela completa com todas as operações realizadas, calcule taxas e veja o valor líquido final.
+                </p>
+                <a href="{{ url_for('listar_todas_operacoes') }}" class="btn btn-outline-success w-100">Ver Todas as Operações</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card: Pesquisar -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 card-custom border-info border-top border-4">
+            <div class="card-body text-center p-4">
+                <h3 class="card-title text-info mb-3">🔍 Buscar</h3>
+                <p class="card-text text-muted mb-4">
+                    Filtre suas operações por código do ativo, ID específico ou pesquise por um período de datas.
+                </p>
+                <a href="{{ url_for('pesquisa') }}" class="btn btn-outline-info w-100">Pesquisar no Sistema</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
