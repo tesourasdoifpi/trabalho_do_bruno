@@ -1,6 +1,6 @@
 from datetime import datetime
-import re
 
+#Função que recebe dois parâmetros: uma data e um formato e retorna se ela é válida
 def data_valida(data_str, formato="%d/%m/%Y"):
     """
     Função para validar se uma string é uma data real.
